@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="30%" r="80%"><stop offset="0" stop-color="#1a2836"/><stop offset=".55" stop-color="#0c1219"/><stop offset="1" stop-color="#06080b"/></radialGradient>
+    <linearGradient id="beam" x1="0" x2="1"><stop offset="0" stop-color="#ffd76a" stop-opacity=".85"/><stop offset=".6" stop-color="#ffd76a" stop-opacity=".18"/><stop offset="1" stop-color="#ffd76a" stop-opacity="0"/></linearGradient>
+    <linearGradient id="beamL" x1="1" x2="0"><stop offset="0" stop-color="#ffd76a" stop-opacity=".55"/><stop offset=".6" stop-color="#ffd76a" stop-opacity=".1"/><stop offset="1" stop-color="#ffd76a" stop-opacity="0"/></linearGradient>
+    <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff2c2" stop-opacity=".95"/><stop offset=".4" stop-color="#ffd76a" stop-opacity=".45"/><stop offset="1" stop-color="#ffd76a" stop-opacity="0"/></radialGradient>
+  </defs>
+
+  <rect width="600" height="800" fill="url(#bg)"/>
+
+  <!-- light beams -->
+  <polygon points="300,200 640,80 640,330" fill="url(#beam)"/>
+  <polygon points="300,200 -40,130 -40,300" fill="url(#beamL)"/>
+  <circle cx="300" cy="200" r="90" fill="url(#lampGlow)"/>
+
+  <!-- lighthouse (the app logo, scaled up) -->
+  <g transform="translate(300,150) scale(7.5) translate(-32,-3.4)">
+    <path d="M28.2 14h7.6l2.2 26H26z" fill="#f4f6f8"/>
+    <path d="M27.6 21h8.8l.5 6h-9.8z" fill="#ff3b47"/>
+    <path d="M26.7 32h10.6l.5 6H26.2z" fill="#ff3b47"/>
+    <rect x="22.5" y="40" width="19" height="3" rx="1.2" fill="#8fa1b4"/>
+    <rect x="26.4" y="12.6" width="11.2" height="2" rx=".6" fill="#cfd6de"/>
+    <rect x="29" y="7.4" width="6" height="5.4" rx="1" fill="#ffe08a"/>
+    <path d="M27.4 7.8 32 3.4l4.6 4.4z" fill="#ff3b47"/>
+  </g>
+  <!-- shoreline -->
+  <path d="M120 452 Q 210 434 300 440 Q 390 434 480 452 L 500 470 L 100 470 Z" fill="#141c26"/>
+
+  <!-- name -->
+  <text x="300" y="610" text-anchor="middle" font-size="118" font-weight="800" fill="#ffffff" letter-spacing="3">Beacon</text>
+</svg>

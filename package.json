@@ -1,0 +1,17 @@
+{
+  "name": "beacon",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Beacon: multilingual, accessible 911 co-pilot with mass-surge triage (demo)",
+  "type": "module",
+  "scripts": {
+    "start": "node server/index.js",
+    "demo": "node scripts/demo.js",
+    "dev": "node --watch server/index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "qrcode": "^1.5.4",
+    "ws": "^8.18.0"
+  }
+}

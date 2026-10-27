@@ -1,0 +1,11 @@
+# secrets — never commit your API key
+.env
+.env.*
+!.env.example
+
+# dependencies (reinstalled with `npm install`)
+node_modules/
+
+# OS / editor clutter
+.DS_Store
+*.log

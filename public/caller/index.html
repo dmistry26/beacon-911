@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0a0c10">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Beacon · Emergency</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='16 0 32 44'><path d='M28.2 14h7.6l2.2 26H26z' fill='%23f4f6f8'/><path d='M27.6 21h8.8l.5 6h-9.8z' fill='%23ff3b47'/><path d='M26.7 32h10.6l.5 6H26.2z' fill='%23ff3b47'/><rect x='22.5' y='40' width='19' height='3' rx='1.2' fill='%238fa1b4'/><rect x='29' y='7.4' width='6' height='5.4' rx='1' fill='%23ffd76a'/><path d='M27.4 7.8 32 3.4l4.6 4.4z' fill='%23ff3b47'/></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="flash"></div>
+
+<!-- HOME -->
+<section id="home" class="screen">
+  <header class="bar">
+    <div class="logo" id="logo"><span class="lhwrap"><svg class="lh" viewBox="0 0 64 44" aria-hidden="true"><defs><linearGradient id="lhBeam" x1="0" x2="1"><stop offset="0" stop-color="#ffd76a" stop-opacity=".95"/><stop offset="1" stop-color="#ffd76a" stop-opacity="0"/></linearGradient></defs><g class="lh-beam"><polygon points="32,10 64,1 64,19" fill="url(#lhBeam)"/></g><path d="M28.2 14h7.6l2.2 26H26z" fill="#f4f6f8"/><path d="M27.6 21h8.8l.5 6h-9.8z" fill="#ff3b47"/><path d="M26.7 32h10.6l.5 6H26.2z" fill="#ff3b47"/><rect x="22.5" y="40" width="19" height="3" rx="1.2" fill="#8fa1b4"/><rect x="26.4" y="12.6" width="11.2" height="2" rx=".6" fill="#cfd6de"/><rect x="29" y="7.4" width="6" height="5.4" rx="1" class="lh-lamp" fill="#ffd76a"/><path d="M27.4 7.8 32 3.4l4.6 4.4z" fill="#ff3b47"/></svg></span><b>Beacon</b></div>
+    <div class="right">
+      <button id="langBtn" class="pill" aria-label="Language"><span id="langFlag">🇺🇸</span> <span id="langName">English</span></button>
+    </div>
+  </header>
+  <main class="center">
+    <button id="callBtn" class="sos" aria-label="Call 911 emergency">
+      <span class="ring r1"></span><span class="ring r2"></span>
+      <span class="core"><b>911</b><small id="callLbl">Call 911</small></span>
+    </button>
+    <p id="tagline" class="tag"></p>
+    <button id="locChip" class="locchip" type="button"></button>
+    <div class="alt">
+      <button id="typeBtn" class="altbtn"><span>⌨︎</span><b id="typeLbl">Type</b></button>
+    </div>
+  </main>
+  <footer class="foot" id="demoNote"></footer>
+</section>
+
+<!-- CALL -->
+<section id="call" class="screen" hidden>
+  <header class="chead">
+    <div class="who">
+      <div class="avatar">911</div>
+      <div>
+        <div class="name">911 Emergency</div>
+        <div class="status" id="status">Calling…</div>
+      </div>
+    </div>
+    <div class="timer" id="timer">00:00</div>
+  </header>
+  <div class="chips" id="chips"></div>
+  <div id="etaBar" class="eta" hidden></div>
+  <div id="bcast" class="bcast" hidden></div>
+  <div id="caps" class="caps" role="log" aria-live="polite"></div>
+  <div id="live" class="live"></div>
+
+  <div id="ctrl" class="ctrl">
+    <div id="quick" class="quick" hidden></div>
+    <div id="humanRow" class="humanrow" hidden><button id="humanBtn" class="human"></button></div>
+    <!-- voice -->
+    <div id="voiceCtl" class="voice" hidden>
+      <button id="kbBtn" class="round sm" aria-label="Switch to typing">⌨︎</button>
+      <button id="micBtn" class="mic" aria-label="Microphone"><span class="wave"></span><b>🎙</b></button>
+    </div>
+    <!-- text -->
+    <form id="textCtl" class="textc" hidden>
+      <input id="textIn" autocomplete="off" autocapitalize="sentences" enterkeyhint="send">
+      <button class="sendb" id="sendBtn" type="submit">➤</button>
+    </form>
+    <button id="endBtn" class="end" aria-label="End call">✕</button>
+  </div>
+
+  <div id="proto" class="proto" hidden></div>
+</section>
+
+<!-- SETTINGS SHEET -->
+<div id="sheet" class="sheet" hidden>
+  <div class="panel">
+    <div class="ph"><b id="setTitle">Language</b><button id="closeSheet" class="icon" aria-label="Close">✕</button></div>
+    <div id="langList" class="langs"></div>
+    <div id="demoLoc" hidden>
+      <div class="sub">Demo location (presenter)</div>
+      <div class="locs" id="locList"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

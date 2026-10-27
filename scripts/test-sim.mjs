@@ -1,0 +1,11 @@
+import WebSocket from 'ws';
+const d = new WebSocket('ws://localhost:3111/ws?role=dispatcher');
+let last;
+d.on('message', m => { const j = JSON.parse(m); if (j.t==='state') last=j; });
+await new Promise(r=>setTimeout(r,500));
+d.send(JSON.stringify({t:'sim', on:true, scenario:'wildfire'}));
+await new Promise(r=>setTimeout(r,25000));
+console.log('calls', last.calls.length, 'events', last.incidents.length, 'mode', last.mode);
+for (const i of last.incidents) console.log(i.num, i.category, i.type, 'calls', i.callIds.length, 'hz', i.hazards.map(h=>h.label+(h.isDelta?'*':'')).join('|'), 'rec', i.rec?.slots?.map(s=>s.label+':'+s.etaSec).join(','));
+const st = {}; last.calls.forEach(c=>st[c.state]=(st[c.state]||0)+1); console.log(st);
+process.exit(0);

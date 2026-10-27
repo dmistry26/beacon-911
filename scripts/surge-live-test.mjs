@@ -1,0 +1,15 @@
+import WebSocket from 'ws';
+const d = new WebSocket('ws://localhost:3111/ws?role=dispatcher');
+let last; d.on('message', (m) => { const j = JSON.parse(m); if (j.t === 'state') last = j; });
+await new Promise((r) => setTimeout(r, 400));
+d.send(JSON.stringify({ t: 'sim', on: true, scenario: 'wildfire' }));
+await new Promise((r) => setTimeout(r, 20000));
+const c = new WebSocket('ws://localhost:3111/ws?role=caller');
+c.on('open', () => c.send(JSON.stringify({ t: 'start', lang: 'hi', mode: 'text', loc: { lat: 37.0838, lng: -122.0812, acc: 9 } })));
+c.on('message', (m) => { const j = JSON.parse(m); console.log('PHONE <-', j.t, j.text || j.state || ''); if (j.t === 'call.answered') setTimeout(() => c.send(JSON.stringify({ t: 'say', text: 'मेरे पिता चल नहीं सकते, हम घर में फँसे हुए हैं और आग फैल रही है', sttMs: 300 })), 2500); });
+await new Promise((r) => setTimeout(r, 14000));
+const call = last.calls.find((x) => x.source === 'live');
+console.log('state', call.state, '| type', call.analysis?.type, '| tags', call.analysis?.tags, '| prio', call.priority, call.reasons);
+console.log('latency', JSON.stringify(call.latency.in));
+console.log(call.lines.map((l) => `${l.who}: ${l.orig} => ${l.en}`).join('\n'));
+process.exit(0);

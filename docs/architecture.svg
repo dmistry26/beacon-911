@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <linearGradient id="lhBeam" x1="0" x2="1"><stop offset="0" stop-color="#ffd76a" stop-opacity=".95"/><stop offset="1" stop-color="#ffd76a" stop-opacity="0"/></linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="70%"><stop offset="0" stop-color="#14202c"/><stop offset="1" stop-color="#07090d"/></radialGradient>
+    <marker id="arR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#4da3ff"/></marker>
+    <marker id="arG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#35d6a3"/></marker>
+    <style>
+      .h { font-weight: 800; fill: #fff; }
+      .lbl { font-size: 15px; font-weight: 700; letter-spacing: .14em; fill: #8fa1b4; }
+      .itm { font-size: 22px; fill: #d9e2ec; }
+      .ct { font-size: 23px; font-weight: 700; fill: #fff; }
+      .cd { font-size: 18px; fill: #a9b8c8; }
+      .cf { font-size: 15px; fill: #3fd0e8; font-family: Menlo, 'SF Mono', monospace; }
+      .num { font-size: 18px; font-weight: 800; fill: #0b0f14; }
+      .al { font-size: 16px; fill: #a9b8c8; }
+      .ext { font-size: 19px; fill: #d9e2ec; }
+    </style>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#glow)"/>
+
+  <!-- title + lighthouse -->
+  <g transform="translate(46,30) scale(2.1)">
+    <polygon points="32,10 64,1 64,19" fill="url(#lhBeam)"/>
+    <path d="M28.2 14h7.6l2.2 26H26z" fill="#f4f6f8"/><path d="M27.6 21h8.8l.5 6h-9.8z" fill="#ff3b47"/><path d="M26.7 32h10.6l.5 6H26.2z" fill="#ff3b47"/>
+    <rect x="22.5" y="40" width="19" height="3" rx="1.2" fill="#8fa1b4"/><rect x="26.4" y="12.6" width="11.2" height="2" rx=".6" fill="#cfd6de"/>
+    <rect x="29" y="7.4" width="6" height="5.4" rx="1" fill="#ffd76a"/><path d="M27.4 7.8 32 3.4l4.6 4.4z" fill="#ff3b47"/>
+  </g>
+  <text x="200" y="100" class="h" font-size="54">How Beacon works</text>
+  <text x="202" y="145" font-size="24" fill="#8fa1b4">From a caller's voice to a dispatched unit, in about a second</text>
+
+  <!-- ===== CALLER PHONE ===== -->
+  <rect x="60" y="230" width="360" height="590" rx="40" fill="#11161e" stroke="#2a394a" stroke-width="2"/>
+  <rect x="190" y="248" width="100" height="10" rx="5" fill="#2a394a"/>
+  <text x="90" y="300" class="lbl">CALLER'S PHONE</text>
+  <text x="90" y="335" class="h" font-size="28">Any language</text>
+  <text x="90" y="365" font-size="17" fill="#66768a">Web app · works on any phone</text>
+  <g class="itm">
+    <text x="90" y="430">🎙  Speech → text</text>
+    <text x="90" y="500">📍  GPS shared instantly</text>
+    <text x="90" y="570">⌨️  Live text &amp; silent tap</text>
+    <text x="90" y="640">🔊  Hears replies in</text>
+    <text x="135" y="670">their own language</text>
+  </g>
+  <circle cx="240" cy="760" r="34" fill="#ff3b47"/><text x="240" y="768" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">911</text>
+
+  <!-- ===== SERVER ===== -->
+  <rect x="540" y="210" width="840" height="620" rx="20" fill="#0f151c" stroke="#3fd0e8" stroke-width="2.5"/>
+  <text x="570" y="255" class="lbl" fill="#3fd0e8">BEACON SERVER</text>
+  <text x="755" y="255" font-size="17" fill="#66768a">Node.js · WebSockets · all decisions logged</text>
+
+  <!-- module cards -->
+  <g>
+    <rect x="570" y="285" width="380" height="160" rx="12" fill="#131b24" stroke="#2a394a"/>
+    <circle cx="602" cy="320" r="16" fill="#4da3ff"/><text x="602" y="326" text-anchor="middle" class="num">1</text>
+    <text x="630" y="328" class="ct">Language detection</text>
+    <text x="590" y="370" class="cd">Reads the actual words,</text>
+    <text x="590" y="395" class="cd">not just Whisper's guess</text>
+    <text x="590" y="428" class="cf">detect.js</text>
+
+    <rect x="970" y="285" width="380" height="160" rx="12" fill="#131b24" stroke="#2a394a"/>
+    <circle cx="1002" cy="320" r="16" fill="#35d6a3"/><text x="1002" y="326" text-anchor="middle" class="num">2</text>
+    <text x="1030" y="328" class="ct">Two-way translation</text>
+    <text x="990" y="370" class="cd">Caller ⇄ English, both ways,</text>
+    <text x="990" y="395" class="cd">in about 0.3 seconds</text>
+    <text x="990" y="428" class="cf">ai.js · Groq gpt-oss-120b</text>
+
+    <rect x="570" y="460" width="380" height="160" rx="12" fill="#131b24" stroke="#2a394a"/>
+    <circle cx="602" cy="495" r="16" fill="#f5c542"/><text x="602" y="501" text-anchor="middle" class="num">3</text>
+    <text x="630" y="503" class="ct">Hybrid triage</text>
+    <text x="590" y="545" class="cd">Instant rules engine + AI.</text>
+    <text x="590" y="570" class="cd">Still works if the AI fails</text>
+    <text x="590" y="603" class="cf">heuristics.js + ai.js</text>
+
+    <rect x="970" y="460" width="380" height="160" rx="12" fill="#131b24" stroke="#35d6a3"/>
+    <circle cx="1002" cy="495" r="16" fill="#35d6a3"/><text x="1002" y="501" text-anchor="middle" class="num">4</text>
+    <text x="1030" y="503" class="ct">Protocol cards</text>
+    <text x="990" y="545" class="cd">Pre-written, pre-translated.</text>
+    <text x="990" y="570" class="cd">AI only picks which card</text>
+    <text x="990" y="603" class="cf">protocols.js</text>
+
+    <rect x="570" y="635" width="380" height="165" rx="12" fill="#1a1013" stroke="#ff3b47"/>
+    <circle cx="602" cy="670" r="16" fill="#ff3b47"/><text x="602" y="676" text-anchor="middle" class="num" fill="#fff">5</text>
+    <text x="630" y="678" class="ct">Surge engine</text>
+    <text x="590" y="720" class="cd">Groups duplicate calls, flags</text>
+    <text x="590" y="745" class="cd">new dangers, AI answers callers</text>
+    <text x="590" y="780" class="cf">engine.js</text>
+
+    <rect x="970" y="635" width="380" height="165" rx="12" fill="#131b24" stroke="#2a394a"/>
+    <circle cx="1002" cy="670" r="16" fill="#c46bff"/><text x="1002" y="676" text-anchor="middle" class="num">6</text>
+    <text x="1030" y="678" class="ct">Unit routing</text>
+    <text x="990" y="720" class="cd">Nearest available unit</text>
+    <text x="990" y="745" class="cd">by real road distance</text>
+    <text x="990" y="780" class="cf">fleet.js · OSRM</text>
+  </g>
+
+  <!-- ===== CONSOLE ===== -->
+  <rect x="1500" y="230" width="360" height="590" rx="16" fill="#11161e" stroke="#2a394a" stroke-width="2"/>
+  <rect x="1500" y="230" width="360" height="36" rx="16" fill="#1a2430"/><rect x="1500" y="250" width="360" height="16" fill="#1a2430"/>
+  <circle cx="1525" cy="248" r="6" fill="#ff5f57"/><circle cx="1545" cy="248" r="6" fill="#febc2e"/><circle cx="1565" cy="248" r="6" fill="#28c840"/>
+  <text x="1530" y="310" class="lbl">DISPATCH CONSOLE</text>
+  <text x="1530" y="345" class="h" font-size="28">The human decides</text>
+  <text x="1530" y="375" font-size="17" fill="#66768a">Browser · one call taker</text>
+  <g class="itm">
+    <text x="1530" y="440">📝  Live transcript</text>
+    <text x="1575" y="470">+ translation</text>
+    <text x="1530" y="530">🚨  Most urgent first</text>
+    <text x="1530" y="590">Δ   Events &amp; new dangers</text>
+    <text x="1530" y="650">🗺️  Map, routes &amp; units</text>
+  </g>
+  <rect x="1530" y="700" width="300" height="70" rx="12" fill="#0f2a22" stroke="#1f8a68"/>
+  <text x="1680" y="732" text-anchor="middle" font-size="20" font-weight="700" fill="#b9ffe6">✓ Dispatcher confirms</text>
+  <text x="1680" y="757" text-anchor="middle" font-size="17" fill="#8fd9bd">every action</text>
+
+  <!-- ===== ARROWS ===== -->
+  <text x="480" y="440" text-anchor="middle" class="al">voice · text</text>
+  <text x="480" y="460" text-anchor="middle" class="al">· GPS</text>
+  <line x1="425" y1="480" x2="535" y2="480" stroke="#4da3ff" stroke-width="3" marker-end="url(#arR)"/>
+  <line x1="535" y1="560" x2="425" y2="560" stroke="#35d6a3" stroke-width="3" marker-end="url(#arG)"/>
+  <text x="480" y="590" text-anchor="middle" class="al">replies in</text>
+  <text x="480" y="610" text-anchor="middle" class="al">their language</text>
+
+  <text x="1440" y="440" text-anchor="middle" class="al">transcript ·</text>
+  <text x="1440" y="460" text-anchor="middle" class="al">triage · units</text>
+  <line x1="1385" y1="480" x2="1495" y2="480" stroke="#4da3ff" stroke-width="3" marker-end="url(#arR)"/>
+  <line x1="1495" y1="560" x2="1385" y2="560" stroke="#35d6a3" stroke-width="3" marker-end="url(#arG)"/>
+  <text x="1440" y="590" text-anchor="middle" class="al">dispatcher</text>
+  <text x="1440" y="610" text-anchor="middle" class="al">replies</text>
+
+  <!-- ===== EXTERNAL SERVICES ===== -->
+  <g stroke="#5d7085" stroke-width="2" stroke-dasharray="6 6">
+    <line x1="700" y1="830" x2="700" y2="885"/><line x1="960" y1="830" x2="960" y2="885"/><line x1="1220" y1="830" x2="1220" y2="885"/>
+  </g>
+  <rect x="540" y="885" width="320" height="64" rx="32" fill="#131b24" stroke="#2a394a"/>
+  <text x="700" y="925" text-anchor="middle" class="ext">Groq · Whisper + LLM</text>
+  <rect x="870" y="885" width="180" height="64" rx="32" fill="#131b24" stroke="#2a394a"/>
+  <text x="960" y="925" text-anchor="middle" class="ext">OSRM roads</text>
+  <rect x="1060" y="885" width="320" height="64" rx="32" fill="#131b24" stroke="#2a394a"/>
+  <text x="1220" y="925" text-anchor="middle" class="ext">OpenStreetMap · Nominatim</text>
+  <text x="960" y="985" text-anchor="middle" font-size="17" fill="#66768a">all free services · the AI layer can be swapped for self-hosted models</text>
+
+  <!-- footer flow -->
+  <text x="960" y="1045" text-anchor="middle" font-size="22" fill="#8fa1b4">Caller speaks  →  detect language  →  translate  →  triage  →  protocol + nearest unit  →  <tspan fill="#35d6a3" font-weight="700">dispatcher confirms</tspan>  →  caller hears it in their language</text>
+</svg>

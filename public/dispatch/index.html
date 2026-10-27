@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beacon · Dispatch Console</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='16 0 32 44'><path d='M28.2 14h7.6l2.2 26H26z' fill='%23f4f6f8'/><path d='M27.6 21h8.8l.5 6h-9.8z' fill='%23ff3b47'/><path d='M26.7 32h10.6l.5 6H26.2z' fill='%23ff3b47'/><rect x='22.5' y='40' width='19' height='3' rx='1.2' fill='%238fa1b4'/><rect x='29' y='7.4' width='6' height='5.4' rx='1' fill='%23ffd76a'/><path d='M27.4 7.8 32 3.4l4.6 4.4z' fill='%23ff3b47'/></svg>">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="routine">
+
+<div id="splash">
+  <div class="sp-card">
+    <div class="sp-mark"><svg class="lh" viewBox="0 0 64 44" aria-hidden="true"><defs><linearGradient id="lhBeam" x1="0" x2="1"><stop offset="0" stop-color="#ffd76a" stop-opacity=".95"/><stop offset="1" stop-color="#ffd76a" stop-opacity="0"/></linearGradient></defs><g class="lh-beam"><polygon points="32,10 64,1 64,19" fill="url(#lhBeam)"/></g><path d="M28.2 14h7.6l2.2 26H26z" fill="#f4f6f8"/><path d="M27.6 21h8.8l.5 6h-9.8z" fill="#ff3b47"/><path d="M26.7 32h10.6l.5 6H26.2z" fill="#ff3b47"/><rect x="22.5" y="40" width="19" height="3" rx="1.2" fill="#8fa1b4"/><rect x="26.4" y="12.6" width="11.2" height="2" rx=".6" fill="#cfd6de"/><rect x="29" y="7.4" width="6" height="5.4" rx="1" class="lh-lamp" fill="#ffd76a"/><path d="M27.4 7.8 32 3.4l4.6 4.4z" fill="#ff3b47"/></svg></div><div class="sp-logo">BEACON</div>
+    <div class="sp-sub">Computer-Aided Dispatch · Console 01 · PSAP Demo</div>
+    <div class="sp-row"><span>Operator</span><b>Call Taker 1</b></div>
+    <div class="sp-row"><span>District</span><b>CA-19 · Santa Cruz · SW San José · Monterey · Paso Robles</b></div>
+    <button id="startShift">Start shift</button>
+    <div class="sp-note">Prototype for demonstration · synthetic data only · not connected to real 911</div>
+  </div>
+</div>
+
+<header id="top">
+  <div class="brand"><span class="lhwrap"><svg class="lh" viewBox="0 0 64 44" aria-hidden="true"><defs><linearGradient id="lhBeam" x1="0" x2="1"><stop offset="0" stop-color="#ffd76a" stop-opacity=".95"/><stop offset="1" stop-color="#ffd76a" stop-opacity="0"/></linearGradient></defs><g class="lh-beam"><polygon points="32,10 64,1 64,19" fill="url(#lhBeam)"/></g><path d="M28.2 14h7.6l2.2 26H26z" fill="#f4f6f8"/><path d="M27.6 21h8.8l.5 6h-9.8z" fill="#ff3b47"/><path d="M26.7 32h10.6l.5 6H26.2z" fill="#ff3b47"/><rect x="22.5" y="40" width="19" height="3" rx="1.2" fill="#8fa1b4"/><rect x="26.4" y="12.6" width="11.2" height="2" rx=".6" fill="#cfd6de"/><rect x="29" y="7.4" width="6" height="5.4" rx="1" class="lh-lamp" fill="#ffd76a"/><path d="M27.4 7.8 32 3.4l4.6 4.4z" fill="#ff3b47"/></svg></span><b>BEACON</b><em>CAD</em></div>
+  <div id="clock" class="mono">--:--:--</div>
+  <div class="modesw" id="modesw">
+    <button data-mode="routine" class="on">ROUTINE</button>
+    <button data-mode="surge">SURGE</button>
+  </div>
+  <div id="stats"></div>
+  <div class="spacer"></div>
+  <div id="engine" class="chip"></div>
+  <div class="simctl">
+    <button id="demoBtn" class="btn">Demo ▾</button>
+    <div id="demoMenu" class="menu" hidden>
+      <button id="simBtn" class="btn warn">▶ Simulate wildfire surge</button>
+      <button id="qrBtn" class="btn">📱 Connect a phone</button>
+      <label class="mrow">Unit travel speed
+        <select id="scale"><option value="1">1× (real time)</option><option value="6" selected>6×</option><option value="12">12×</option></select>
+      </label>
+      <button id="resetBtn" class="btn ghost">⟲ Reset console</button>
+    </div>
+  </div>
+</header>
+
+<main id="grid">
+  <aside id="queue">
+    <div class="ph"><span id="qtitle">CALL QUEUE</span><span id="qcount" class="mono"></span></div>
+    <div id="qlist"></div>
+  </aside>
+
+  <section id="center">
+    <div id="map"></div>
+    <div id="banner"></div>
+    <div id="resboard"></div>
+    <div id="bcbar" hidden>
+      <span class="lbl">BROADCAST</span>
+      <select id="bc-target"></select>
+      <input id="bc-text" placeholder="English message — translated to each caller's language (e.g. Evacuate south on Highway 9 to Scotts Valley)">
+      <button id="bc-send" class="btn warn">Send</button>
+    </div>
+  </section>
+
+  <aside id="side">
+    <nav id="tabs">
+      <button data-tab="call" class="on">CALL</button>
+      <button data-tab="events">EVENTS <i id="evBadge"></i></button>
+      <button data-tab="units" class="minor">UNITS</button>
+      <button data-tab="audit" class="minor">LOG</button>
+      <button id="moreTab" title="More">⋯</button>
+    </nav>
+
+    <div id="pane-call" class="pane on">
+      <div id="c-empty" class="empty">Select a call from the queue</div>
+      <div id="c-body" hidden>
+        <div id="c-head"></div>
+        <div id="c-loc"></div>
+        <div id="c-tr" class="tr"></div>
+        <div class="say">
+          <input id="say-in" placeholder="Type or speak in English — Beacon translates for the caller" autocomplete="off">
+          <button id="say-mic" class="btn" title="Hold a conversation by voice (toggle)">🎙</button>
+          <button id="say-send" class="btn primary">Send</button>
+        </div>
+        <div id="c-inc"></div>
+        <div id="c-proto"></div>
+        <div id="c-rec"></div>
+      </div>
+    </div>
+    <div id="pane-events" class="pane"></div>
+    <div id="pane-units" class="pane"></div>
+    <div id="pane-audit" class="pane"></div>
+  </aside>
+</main>
+
+<footer id="bottom">
+  <div id="intake"></div>
+</footer>
+
+<div id="toasts"></div>
+<div id="modal" hidden></div>
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
