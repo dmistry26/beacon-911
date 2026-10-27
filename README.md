@@ -1,6 +1,6 @@
 # Beacon
 
-**A multilingual, accessible 911 co-pilot with a mass-surge triage mode.** Built for the Congressional App Challenge, CA-19 (southwest San José · Santa Cruz & the Santa Cruz Mountains · Monterey Peninsula · Paso Robles & Atascadero).
+**A multilingual, accessible 911 co-pilot with intelligent call synthesis.** Built for the Congressional App Challenge, CA-19 (southwest San José · Santa Cruz & the Santa Cruz Mountains · Monterey Peninsula · Paso Robles & Atascadero).
 
 > Prototype for demonstration. Synthetic data only. **Not connected to real 911.**
 
