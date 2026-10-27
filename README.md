@@ -29,14 +29,6 @@ npm run demo                # starts Beacon + a free HTTPS tunnel for your phone
 * No Groq key? It still runs: free MyMemory translation + the built-in rules triage. Add the key for sub-second translation and LLM triage.
 * Use **Chrome** (desktop / Android) or **Safari** (iOS) — they provide the free in-browser speech recognition + voices.
 
-### Demo script (≈3 min)
-
-1. **Routine** — On your phone choose Spanish and tap **911** (set demo location with 5 taps on the Beacon logo → *Ben Lomond · fire zone*). The console rings; click **ANSWER**. Speak a cardiac-arrest report. Show the transcript (original + English), the AI assessment, the CPR protocol card playing in Spanish with the metronome, **Dispatch**, and the latency bar.
-2. **Surge** — Press **▶ Simulate wildfire surge**. 52 calls in 6 languages flood in; the AI intake grid fills, calls collapse into events, hazard deltas pop up (trapped neighbor, propane tank, wheelchair user).
-3. **Hero moment** — While the surge runs, call from your phone in Hindi: *"my father can't walk, we're trapped."* It's escalated to the top; click **Take over**, then **Dispatch rescue**. Send a **Broadcast** and watch it arrive on your phone in Hindi.
-4. **Accessibility** — Silent tap call + captions/real-time-text call.
-
-Dev helpers: `scripts/ctl.mjs` (send console commands), `scripts/fakecaller.mjs`, `scripts/test-sim.mjs`.
 
 ## Architecture
 
